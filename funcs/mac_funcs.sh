@@ -4,6 +4,10 @@ function pwdx {
   lsof -a -p $1 -d cwd -n | tail -1 | awk '{print $NF}'
 }
 
+function netstat_ {
+  lsof -nP -iTCP:$1 -sTCP:LISTEN|sed -n "2,1p"|awk '{print $2}'
+}
+
 function tj {
   cat $TJ_HOST_HOME 
 }
